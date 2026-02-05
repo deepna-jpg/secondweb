@@ -11,7 +11,8 @@ const genAI = new GoogleGenerativeAI(apiKey);
  */
 export async function getWeatherAdvice(temp: number) {
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        // 모델명 수정: Flash 버전 명시 (v1beta 대응)
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
         const prompt = `현재 서울의 기온은 ${temp}도입니다. 
 이 날씨에 어울리는 옷차림과 짧은 인사말을 친절하게 추천해주세요. 
@@ -33,7 +34,7 @@ export async function getWeatherAdvice(temp: number) {
  */
 export async function getFashionRecommendation(temp: number, location: string, style: string, gender: string) {
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
         const prompt = `당신은 전문 패션 에디터입니다. 다음 정보를 바탕으로 오늘을 위한 완벽한 코디를 제안해주세요.
 - 장소: ${location} (현재 기온 ${temp}°C)
@@ -61,7 +62,7 @@ export async function getFashionRecommendation(temp: number, location: string, s
  */
 export async function testGemini() {
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
         const result = await model.generateContent("Explain how AI works in a few words");
         const response = await result.response;
         console.log("Gemini Response:", response.text());

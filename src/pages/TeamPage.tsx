@@ -72,7 +72,26 @@ export default function TeamPage() {
                     </div>
                 ))}
             </div>
-            <WeatherWidget />
+            {/* 
+                [구분선 섹션]
+                팀원 목록과 날씨 위젯을 시각적으로 분리하기 위해 
+                상단에 가는 선(borderTop)과 충분한 여백(marginTop)을 추가했습니다.
+            */}
+            <section style={{
+                marginTop: '8rem',      // 팀원 목록과의 거리
+                paddingTop: '6rem',     // 선과의 거리
+                borderTop: '1px solid #eee' // 아주 연한 회색 실선
+            }}>
+                <h2 style={{
+                    textAlign: 'center',
+                    fontSize: '1.8rem',
+                    marginBottom: '3rem',
+                    color: 'var(--text-main)'
+                }}>
+                    멤버들의 현재 지역 날씨
+                </h2>
+                <WeatherWidget />
+            </section>
         </div>
     );
 }

@@ -21,6 +21,8 @@ const locationMap: Record<string, { lat: number; lon: number }> = {
     "Incheon": { lat: 37.4, lon: 126.7 }
 };
 
+
+
 export default function FashionPage() {
     const [memberKeys, setMemberKeys] = useState<string[]>([]);
     const [selectedKey, setSelectedKey] = useState<string>('');
@@ -35,11 +37,24 @@ export default function FashionPage() {
     useEffect(() => {
         const fetchMembers = async () => {
             try {
-                // Flask/FastAPI 서버 주소 (CORS 설정이 되어 있어야 합니다)
-                const res = await axios.get('http://127.0.0.1:8000/members');
+                // 5초 타임아웃 추가
+                const res = await axios.get('http://localhost:8000/members', { timeout: 5000 });
+                console.log("FashionPage: API Response Received", res.data);
                 setMemberKeys(res.data);
-            } catch (err) {
-                console.error("팀원 목록을 가져오지 못했습니다.", err);
+            } catch (err: any) {
+                console.error("======== FashionPage Error ========");
+                if (err.code === 'ECONNABORTED') {
+                    console.error("요청 시간 초과! 백엔드 서버가 켜져 있는지 확인해주세요.");
+                } else if (err.message === 'Network Error') {
+                    console.error("네트워크 에러! 서버(localhost:8000)에 연결할 수 없습니다.");
+                    console.error("1. 백엔드 서버(FastAPI)가 실행 중인가요?");
+                    console.error("2. 주소가 http://localhost:8000 이 맞나요?");
+                } else {
+                    console.error("기타 에러 발생:", err);
+                }
+                console.error("Full Error Object:", err);
+            } finally {
+                console.log("FashionPage: fetchMembers finished");
             }
         };
         fetchMembers();
@@ -67,7 +82,7 @@ export default function FashionPage() {
 
         try {
             // 1. FastAPI에서 상세 정보 획득
-            const memberRes = await axios.get(`http://127.0.0.1:8000/members/${key}`);
+            const memberRes = await axios.get(`http://localhost:8000/members/${key}`);
             const member = memberRes.data;
             setMemberDetail(member);
 
@@ -88,9 +103,11 @@ export default function FashionPage() {
             );
             setRecommendation(advice);
 
-        } catch (err) {
+        } catch (err: any) {
             console.error("데이터 처리 중 오류 발생:", err);
-            setRecommendation("정보를 가져오는 중 오류가 발생했습니다. 서버 상태를 확인해주세요.");
+            let msg = "정보를 가져오는 중 오류가 발생했습니다.";
+            if (err.code === "ERR_NETWORK") msg += " (네트워크 오류: 백엔드 연결 불가)";
+            setRecommendation(msg);
         } finally {
             setLoading(false);
         }
