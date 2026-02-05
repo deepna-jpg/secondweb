@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.tsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import HomePage from "./pages/HomePage";
+import TeamPage from "./pages/TeamPage";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+/*
+  [메인 앱 컴포넌트]
+  웹사이트의 '지도'를 그리는 곳입니다.
+  어떤 주소로 들어오면 어떤 페이지를 보여줄지 결정합니다.
+*/
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    /* 
+      [BrowserRouter]
+      웹사이트 전체를 감싸서 "지금부터 페이지 이동 관리를 시작한다!"라고 선언하는 역할입니다.
+    */
+    <BrowserRouter>
+      {/* 
+         [Routes]
+         여러 가지 경로(Route)들을 묶어주는 목록입니다.
+         "이 중에 맞는 주소가 있으면 하나만 골라서 보여줘"라고 말하는 것과 같습니다.
+      */}
+      <Routes>
 
-export default App
+        {/* 
+           - 자식 Route들(HomePage, TeamPage)은 Layout 안의 'Outlet'이라는 구멍에 쏙 들어갑니다.
+        */}
+        <Route path="/" element={<Layout />}>
+
+          {/* index: 주소 뒤에 아무것도 없을 때 (예: www.mysite.com/) 보여줄 화면 */}
+          <Route index element={<HomePage />} />
+
+          {/* path="team": 주소가 '/team'일 때 (예: www.mysite.com/team) 보여줄 화면 */}
+          <Route path="team" element={<TeamPage />} />
+
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}

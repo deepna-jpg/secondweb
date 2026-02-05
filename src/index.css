@@ -1,68 +1,150 @@
+/* 
+  ========================================
+  🎨 디자인 시스템: 미니멀리즘 클린 (Spring 버전)
+  ========================================
+  애플 스타일의 깨끗함과 봄의 따뜻한 파스텔 옐로우를 조화시킨 디자인입니다.
+  불필요한 장식을 줄이고 여백과 부드러운 그림자를 강조합니다.
+*/
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* 🌼 봄 느낌의 파스텔 포인트 컬러 */
+  --primary-color: #fff4b0;
+  /* 부드러운 파스텔 옐로우 */
+  --primary-hover: #ffef8a;
+  /* 조금 더 진한 노란색 (마우스용) */
+  --accent-soft: #fdf6e3;
+  /* 아주 연한 미색 */
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* ⚪ 배경 및 텍스트 (눈이 편안한 색감) */
+  --bg-color: #fbfbfb;
+  /* 아주 깨끗한 연회색 배경 */
+  --surface-color: #ffffff;
+  /* 하얀색 카드/종이 질감 */
+  --text-main: #1d1d1f;
+  /* 깊은 차콜색 (애플식 텍스트) */
+  --text-sub: #86868b;
+  /* 부드러운 회색 설명글 */
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  /* 📐 깔끔한 레이아웃 설정 */
+  --border-clean: 1px solid #e5e5e7;
+  /* 얇고 정갈한 실선 */
+  --shadow-subtle: 0 8px 20px rgba(0, 0, 0, 0.04);
+  /* 공기처럼 가벼운 그림자 */
+
+  --max-width: 1000px;
+  /* 콘텐츠에 집중하기 위해 조금 좁게 설정 */
+  --header-height: 64px;
+  --border-radius: 12px;
+  /* 세련된 둥근 모서리 */
+  --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* 부드러운 움직임 */
+}
+
+/* 
+  ========================================
+  🛠️ 기본 설정 (Reset)
+  ========================================
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  /* 글자를 더 매끄럽게 */
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
   min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* 
+  ========================================
+  📄 정갈한 카드 (Clean Card)
+  ========================================
+  테두리를 없애고 가벼운 그림자만 주어 종이 같은 느낌을 줍니다.
+*/
+.clean-card {
+  background: var(--surface-color);
+  border: var(--border-clean);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-subtle);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.clean-card:hover {
+  transform: translateY(-4px);
+  /* 아주 살짝 떠오르는 느낌 */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.max-w-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* 
+  ========================================
+  🧩 타이포그래피 (Typography)
+  ========================================
+*/
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 3rem;
+  color: var(--text-main);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+/* 
+  ========================================
+  🔘 버튼 스타일 (Modern Button)
+  ========================================
+*/
+button,
+.btn {
   font-family: inherit;
-  background-color: #1a1a1a;
+  font-weight: 500;
+  padding: 0.8rem 1.6rem;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 20px;
+  /* 알약 모양의 귀여운 버튼 */
+  color: var(--text-main);
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: all var(--transition-smooth);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+button:hover {
+  background: var(--primary-hover);
+  transform: scale(1.02);
+}
+
+/* 
+  ========================================
+  🚀 애니메이션 (Animation)
+  ========================================
+*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  a:hover {
-    color: #747bff;
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+.animate-fade {
+  animation: fadeIn 0.8s ease-out forwards;
 }
