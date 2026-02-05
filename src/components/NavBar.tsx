@@ -66,6 +66,11 @@ export default function NavBar() {
             팀 소개
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/weather" style={getLinkStyle}>
+            날씨
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
