@@ -2,6 +2,7 @@
 import WeatherWidget from '../components/WeatherWidget';
 
 
+
 /*
   [홈 페이지 컴포넌트]
   이곳은 웹사이트의 대문 역할을 하는 페이지입니다.
@@ -116,6 +117,7 @@ export default function HomePage() {
                 </h2>
                 <WeatherWidget />
             </section>
+
         </div>
     );
 }

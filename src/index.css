@@ -148,3 +148,72 @@ button:hover {
 .animate-fade {
   animation: fadeIn 0.8s ease-out forwards;
 }
+
+/* 
+  ========================================
+  👗 패션 매거진 스타일 (Fashion Magazine Style)
+  ========================================
+*/
+.magazine-container {
+  display: flex;
+  gap: 3rem;
+  margin-top: 2rem;
+  min-height: 70vh;
+}
+
+.magazine-sidebar {
+  flex: 0 0 280px;
+}
+
+.magazine-main {
+  flex: 1;
+  border-left: 2px solid var(--text-main);
+  padding-left: 3rem;
+  position: relative;
+}
+
+.fashion-title {
+  font-family: serif; 
+  font-size: 4rem;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  border-bottom: 5px solid var(--text-main);
+  display: inline-block;
+}
+
+.member-select {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border: 2px solid var(--text-main);
+  border-radius: 0;
+  background: white;
+  cursor: pointer;
+  outline: none;
+}
+
+.recommendation-box {
+  background: white;
+  padding: 2.5rem;
+  box-shadow: 20px 20px 0px var(--primary-color);
+  border: 1px solid var(--text-main);
+}
+
+.weather-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--text-main);
+  color: white;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.fashion-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-sub);
+  margin-bottom: 0.5rem;
+  display: block;
+}

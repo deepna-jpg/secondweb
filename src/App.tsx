@@ -4,6 +4,8 @@ import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import TeamPage from "./pages/TeamPage";
 import WeatherPage from './pages/WeatherPage';
+import FashionPage from './pages/FashionPage';
+
 /*
   [메인 앱 컴포넌트]
   웹사이트의 '지도'를 그리는 곳입니다.
@@ -24,17 +26,22 @@ export default function App() {
       <Routes>
 
         {/* 
-           - 자식 Route들(HomePage, TeamPage)은 Layout 안의 'Outlet'이라는 구멍에 쏙 들어갑니다.
+           - 자식 Route들(HomePage, TeamPage 등)은 Layout 안의 'Outlet'이라는 구멍에 쏙 들어갑니다.
+           - 이렇게 하면 상단바(NavBar)는 고정되고 내용만 바뀝니다.
         */}
         <Route path="/" element={<Layout />}>
 
           {/* index: 주소 뒤에 아무것도 없을 때 (예: www.mysite.com/) 보여줄 화면 */}
           <Route index element={<HomePage />} />
 
-          {/* path="team": 주소가 '/team'일 때 (예: www.mysite.com/team) 보여줄 화면 */}
+          {/* path="team": 팀 소개 페이지 */}
           <Route path="team" element={<TeamPage />} />
+
+          {/* path="weather": 날씨 위젯 페이지 */}
           <Route path="weather" element={<WeatherPage />} />
 
+          {/* path="fashion": [NEW] AI 패션 추천 페이지 */}
+          <Route path="fashion" element={<FashionPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
