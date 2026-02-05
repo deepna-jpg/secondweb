@@ -1,4 +1,6 @@
 // src/pages/HomePage.tsx
+import WeatherWidget from '../components/WeatherWidget';
+
 
 /*
   [홈 페이지 컴포넌트]
@@ -102,7 +104,18 @@ export default function HomePage() {
                     </p>
                 </div>
             </div>
-
+            {/* 날씨 위젯 섹션 */}
+            <section style={{ marginTop: '6rem', marginBottom: '4rem' }}>
+                <h2 style={{
+                    textAlign: 'center',
+                    fontSize: '2rem',
+                    marginBottom: '2rem',
+                    color: 'var(--text-main)'
+                }}>
+                    실시간 날씨
+                </h2>
+                <WeatherWidget />
+            </section>
         </div>
     );
 }

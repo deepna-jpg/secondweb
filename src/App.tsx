@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import TeamPage from "./pages/TeamPage";
-
+import WeatherPage from './pages/WeatherPage';
 /*
   [메인 앱 컴포넌트]
   웹사이트의 '지도'를 그리는 곳입니다.
@@ -33,6 +33,7 @@ export default function App() {
 
           {/* path="team": 주소가 '/team'일 때 (예: www.mysite.com/team) 보여줄 화면 */}
           <Route path="team" element={<TeamPage />} />
+          <Route path="weather" element={<WeatherPage />} />
 
         </Route>
       </Routes>

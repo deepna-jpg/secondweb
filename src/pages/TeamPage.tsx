@@ -1,5 +1,5 @@
 // src/pages/TeamPage.tsx
-
+import WeatherWidget from '../components/WeatherWidget';
 /*
   [데이터 준비 (Array of Objects)]
   팀원 정보를 담고 있는 배열입니다.
@@ -72,6 +72,7 @@ export default function TeamPage() {
                     </div>
                 ))}
             </div>
+            <WeatherWidget />
         </div>
     );
 }
